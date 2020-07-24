@@ -5,16 +5,16 @@ import Home from './components/Home'
 import formSchema from './validation/formSchema'
 import * as yup from 'yup'
 
-const orderData = {
+const orderData = [ {
   name: '',
   size: '',
   toppings: []
-}
-const initialOrderValue = {
+}]
+const initialOrderValue = [{
   name: '',
   size: '',
   toppings: []
-}
+}]
 const initialFormValues = {
   name: '',
   size: '',
@@ -34,14 +34,17 @@ const App = () => {
   const [formErrors, setFormErrors] = useState(initialFormErrors)
 
   const getOrder = () => {
-    setOrder(order)
+    setOrder([order])
   }
 
   const postNewOrder = (newOrder) => {
-    setOrder(newOrder, ...order)
+    console.log(newOrder)
 
+    setOrder([newOrder, ...order])
+    setFormValues(initialFormValues)
+    
   }
-
+  console.log(order)
   const inputChange = (name, value) => {
     yup
       .reach(formSchema, name)
@@ -65,6 +68,16 @@ const App = () => {
     })
   }
 
+  const checkboxChange = (name, isChecked) => {
+    setFormValues({
+      ...formValues,
+      toppings: {
+        ...formValues.hobbies,
+        [name]: isChecked
+      }
+    })
+  }
+
   const submit = () => {
     const newOrder = {
       name: formValues.name.trim(),
@@ -73,7 +86,9 @@ const App = () => {
     }
     postNewOrder(newOrder)
   }
-
+  useEffect(() => {
+    getOrder()
+  }, [])
 
 
 
@@ -89,9 +104,10 @@ const App = () => {
         <Route path='/pizza'>
           <OrderForm
             order={order}
-            input ={inputChange}
+            inputChange ={inputChange}
             submit ={submit}
             values ={formValues}
+            errors = {formErrors}
           />
         </Route>
         <Route path='/'>
