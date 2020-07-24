@@ -108,6 +108,7 @@ const App = () => {
             submit ={submit}
             values ={formValues}
             errors = {formErrors}
+            checkboxChange = {checkboxChange}
           />
         </Route>
         <Route path='/'>
