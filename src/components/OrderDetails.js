@@ -15,6 +15,8 @@ export default function OrderDetails(props) {
           <ul>
             {order[0].toppings.map((top, idx) => <li key={idx}>{top}</li>)}
           </ul>
+          <p>Special Instructions:</p>
+          <div>{order[0].instructions}</div>
         </div>
       }
         </div>

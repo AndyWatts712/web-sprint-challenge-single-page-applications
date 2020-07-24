@@ -36,7 +36,7 @@ export default function OrderForm(props) {
                         onChange={onInputChange}
                     />
                 </label>
-                <button>Submit</button>
+                
                 <label>Size
           <select
                         onChange={onInputChange}
@@ -83,6 +83,17 @@ export default function OrderForm(props) {
             onChange={onCheckboxChange}
           />
         </label>
+        <br></br>
+        <label>Special Instructions:
+            <input id='textbox' style={{height: '50px'}}
+                type="text"
+                name='instructions'
+                value={values.instructions}
+                onChange={onInputChange}
+            />
+        </label>
+        <button>Submit</button>
+        <div>{errors.name}</div>
             </form>
             <OrderDetails order={order} />
         </div>

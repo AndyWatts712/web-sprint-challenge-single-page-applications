@@ -9,6 +9,8 @@ const formSchema = yup.object().shape({
     .string()
     .min(2, "Name must be at least 2 characters")
     .required("Name is Required"),
+    instructions: yup
+    .string()
 })
   
   export default formSchema

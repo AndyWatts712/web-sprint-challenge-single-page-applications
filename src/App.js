@@ -8,22 +8,28 @@ import * as yup from 'yup'
 const orderData = [ {
   name: '',
   size: '',
-  toppings: []
+  toppings: {
+    pepper: false,
+    sausage: false,
+    mushroom: false,
+    olives: false
+  },
+  instructions: ''
 }]
 const initialOrderValue = [{
   name: '',
   size: '',
-  toppings: []
+  toppings: [],
+  instructions: ''
 }]
 const initialFormValues = {
   name: '',
   size: '',
-  toppings: []
+  toppings: [],
+  instructions: ''
 }
 const initialFormErrors = {
   name: '',
-  size: '',
-  toppings: []
 }
 
 
@@ -72,17 +78,20 @@ const App = () => {
     setFormValues({
       ...formValues,
       toppings: {
-        ...formValues.hobbies,
+        ...formValues.toppings,
         [name]: isChecked
       }
     })
   }
 
+
+
   const submit = () => {
     const newOrder = {
       name: formValues.name.trim(),
       size: formValues.size,
-      toppings: Object.keys(formValues.toppings).filter(top => formValues.toppings[top])
+      toppings: Object.keys(formValues.toppings).filter(top => formValues.toppings[top]),
+      instructions: formValues.instructions
     }
     postNewOrder(newOrder)
   }
@@ -94,8 +103,9 @@ const App = () => {
 
   return (
     <>
-      <h1>Lambda Eats</h1>
-      <p>You can remove this code and create your own header</p>
+      <h1>Lambda Pizza</h1>
+      <p>You can remove this code and create your own header,</p>
+      <p>but I'm just going to leave it.</p>
 
       <Link to='/'>Home</Link>
       <Link to='/pizza'>Order Pizza</Link>
